@@ -95,6 +95,7 @@ disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id: UA-2375520-7
+google_analytics_name: adamniedzielski.github.io
 
 # Facebook Like
 facebook_like: false
