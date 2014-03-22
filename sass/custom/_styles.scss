@@ -12,4 +12,23 @@ section.about-me {
     margin-left: 20px;
   }
 
+  a.twitter {
+
+    &, &:hover {
+      font-size: 1.5em;     
+      color: #F8F8F8;
+      text-shadow: none;
+      text-decoration: none;
+      padding: 7px;
+      @include border-radius(4px, 4px);
+    }
+
+    & {
+      background: none repeat scroll 0 0 lighten(#085100, 5);
+    }
+
+    &:hover {
+      background: none repeat scroll 0 0 #085100;
+    }
+  }
 }
