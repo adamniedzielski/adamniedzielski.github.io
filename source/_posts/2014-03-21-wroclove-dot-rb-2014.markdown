@@ -157,7 +157,7 @@ This lightning talk was a reaction to general **Rails critism** during the confe
 
 #### Marta Paciorkowska - [@a_meba](https://twitter.com/a_meba)
 
-Marta Paciorkowska presented [Chef Browser](https://github.com/3ofcoins/chef-browser) gem. Default **Chef** server interface isn't rich at all, but Chef server exposes API for manipulating it - thank you for creating this gem.
+Marta Paciorkowska presented [Chef Browser](https://github.com/3ofcoins/chef-browser) web application. Default **Chef** server interface isn't rich at all, but Chef server exposes API for manipulating it - thank you for creating this helpful tool.
 
 #### Arne Brasseur - [@plexus](https://twitter.com/plexus)
 
