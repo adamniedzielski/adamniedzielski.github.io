@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My take on services in Rails"
-date: 2014-11-22 16:04:23 +0100
+date: 2014-11-25 21:07:23 +0100
 comments: true
 categories:
 - Rails
@@ -13,26 +13,26 @@ categories:
 - scaling Rails
 ---
 
-It's been a while since my last post. I was writing my engineer's thesis which caused general disgust towards writing at all. Anyway, these sad times are over and here comes the shiny new blogpost about introducing **service layer in Rails applications**. It does not contain any breakthrough thoughts, but is rather a mixture of ideas I **learned from great Ruby developers**. It somehow sums up one year of my experience with services.
+It's been a while since my last post. I was writing my engineer's thesis which caused general disgust towards writing at all. Anyway, these sad times are over and here comes the shiny new blogpost about introducing **service layer in Rails applications**. It does not contain any breakthrough thoughts, but is rather a mixture of ideas I **learned from great Ruby developers**.
 
 <!-- more -->
 
 ### Why?
 
-We need a place to store the domain logic of our app. If you follow The Rails Way it can be:</br>
+We need a place to store the **domain logic** of our app. If you follow The Rails Way it can be:</br>
 a) controller</br>
 b) model
 
-Controller is an entry point to our application. However, it's not the only possible entry point. I would like to have my logic accessible from:
+Controller is an **entry point** to our application. However, it's not the only possible entry point. I would like to have my logic accessible from:
 
 - Rake tasks
 - background jobs
 - console
 - tests
 
-If I throw my logic into controller it won't be accessible from all these places. So let's try "skinny controller, fat model" approach and move the logic to a model. But which one? If a given piece of logic involves ```User```, ```Cart``` and ```Product``` models where should it live?
+If I throw my logic into a controller it won't be accessible from all these places. So let's try "skinny controller, fat model" approach and move the logic to a model. But which one? If a given piece of logic involves ```User```, ```Cart``` and ```Product``` models - where should it live?
 
-A class which inherits from ```ActiveRecord::Base``` already has a lot of responsibilities. It handles query interface, associations and validations.  
+A class which inherits from ```ActiveRecord::Base``` already has a lot of responsibilities. It handles **query interface, associations and validations**. If you add even more code to your model it will quickly become an unmaintainable mess with hundreds of public methods. How can you change one line of your model's code with confidence that nothing breaks up? It's much easier when the whole class fits into a single screen of code.
 
 
 ### How to implement a service?
@@ -48,11 +48,11 @@ class CreateUserAccount
 end
 ```
 
-The service does one thing and has one public method. I used to name it ```perform```, but ```call``` is slightly better. Lambda also responds to ```call``` so in your tests you have the possibility to mock service with lambda, which may lead to a shorter test. 
+The service **does one thing** and has one public method. I used to name it ```perform```, but ```call``` is slightly better. Lambda also responds to ```call``` so in your tests you have the possibility to mock service with lambda, which is quite convenient. 
 
 ### Splitting big services
 
-As you implement a service object you may notice that it grows in size. It is usually a sign that this service has more than one responsibility and should be composed of a couple smaller services. How to organize them?
+As you implement a service object you may notice that it grows in size. It is usually a sign that this service has **more than one responsibility** and should be composed of a few smaller services. How to organize them? Here comes the example:
 
 ```ruby app/services/create_user_account/generate_token.rb
 class CreateUserAccount
@@ -88,11 +88,11 @@ class CreateUserAccount
 end
 ```
 
-So you have to create a new directory - ```create_user_account``` and place there those extracted services. Each of them should be encapsulated in ```CreateUserAccount``` namespace. Again, Rails autoloads everything for you.
+So you have to create a new directory ```app/services/create_user_account``` and place there those extracted services. Each of them should be encapsulated in ```CreateUserAccount``` namespace. Again, Rails autoloads everything for you.
 
 ### Dependency injection
 
-How can you obtain instance of this "child service" in your "parent service"? You could write something like:
+How can you obtain instance of this "child service" in your "parent service"? You could write something similar to:
 
 ```ruby app/services/create_user_account.rb
 class CreateUserAccount
@@ -106,7 +106,7 @@ class CreateUserAccount
 end
 ```
 
-In such a case you hardcode instantiation of ```GenerateToken``` service inside ```CreateUserAccount```. Your are not able to easily provide mock implementation of ```GenerateToken``` inside your tests so you cannot test ```CreateUserAccount``` service in isolation.
+In such a case you **hardcode** instantiation of ```GenerateToken``` service inside ```CreateUserAccount```. Your are not able to easily provide mock implementation of ```GenerateToken``` inside your tests so you cannot test ```CreateUserAccount``` service in isolation.
 
 The simple yet powerful solution [is described here](http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html). Let's apply it in our case:
 
@@ -152,6 +152,66 @@ class CreateUserAccount
     end
 
     [...]
+  end
+end
+```
+
+We pass all dependencies to the constructor of the service. But we also provide a **factory method** - ```build``` which knows the sane way to build the service.  
+
+### Complete example
+
+Here is the complete example which combines everything:
+
+```ruby app/services/create_user_account.rb
+class CreateUserAccount
+
+  def self.build
+    new(GenerateToken.build, SendWelcomeEmail.build)
+  end
+
+  def initialize(generate_token, send_welcome_email)
+    @generate_token = generate_token
+    @send_welcome_email = send_welcome_email
+  end
+  
+  def call(params)
+    # code which creates user model
+    [...]
+    @generate_token.call(user)
+    @send_welcome_email.call(user)
+    user
+  end
+end
+```
+
+```ruby app/services/create_user_account/generate_token.rb
+class CreateUserAccount
+  class GenerateToken
+
+    # this service has no dependencies
+    def self.build
+      new
+    end
+
+    def call(user)
+      [...]
+    end
+  end
+end
+```
+
+```ruby app/services/create_user_account/send_welcome_email.rb
+class CreateUserAccount
+  class SendWelcomeEmail
+
+    # this service has no dependencies
+    def self.build
+      new
+    end
+
+    def call(user)
+      [...]
+    end
   end
 end
 ```
