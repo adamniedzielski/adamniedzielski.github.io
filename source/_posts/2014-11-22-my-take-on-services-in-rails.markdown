@@ -216,3 +216,6 @@ class CreateUserAccount
 end
 ```
 
+#### Update 27.12.2014
+
+Following suggestions in the comments, I've prepared a dummy app to demonstrate usage of service objects. I hope it's at least a bit more concrete than the examples above. Here is the link: https://github.com/adamniedzielski/service-objects-example
