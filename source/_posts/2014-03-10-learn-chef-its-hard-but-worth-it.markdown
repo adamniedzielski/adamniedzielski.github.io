@@ -13,6 +13,12 @@ Recently I've been forced by the circumstances to learn [Chef](http://www.getche
 
 <!-- more -->
 
+#### Update 26.05.2015
+
+Today I would rather recommend using [Ansible](http://docs.ansible.com/) than Chef. I made a switch some time ago. Ansible is just simpler and works great for my purposes.
+
+#### Here goes the original post:
+
 I said *"forced to learn"*, although it's not that I don't like learning new technologies. In fact, I love it! However, there are technologies which are pleasure to learn and those which are painful. I approached Chef a couple of times before - read a blog post and then headed to the [official docs](http://docs.opscode.com/), but quickly backed out after reading a few pages. I don't know what the reason was - the layout, the language or the organisation of the pages. Maybe it was just me not focused enough on the content - although I tried very hard.
 
 What I want to say in the blog post is that learning Chef was really hard for me. And if you are in a similar situation as I was - **you tried to learn Chef but failed** - I want to give you a bit of motivation to start again.
