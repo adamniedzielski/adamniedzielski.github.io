@@ -64,6 +64,10 @@ What's more, you can re-enable some modules disabled by rails-api or just comple
 
 ## active_model_serializers
 
+#### Update 26.05.2015
+
+This description talks about version 0.8.x of active_model_serializers!
+
 If you want to build JSON API it's good to have control over the generated JSON. And here we need the second gem - [active_model_serializers](https://github.com/rails-api/active_model_serializers).
 
 Disclaimer: there are other gems meant to solve similar problem, for example [rabl](https://github.com/nesquena/rabl) and [Jbuilder](https://github.com/rails/jbuilder). I haven't used them in a project yet, so I can't make any comparisons. But active_model_serializers works for me.
