@@ -20,14 +20,14 @@ section.about-me {
     margin-left: 20px;
   }
 
-  a.twitter {
+  a.action-button {
 
     &, &:hover {
       font-size: 1.5em;     
       color: #F8F8F8;
       text-shadow: none;
       text-decoration: none;
-      padding: 7px;
+      padding: 7px 25px;
       @include border-radius(4px, 4px);
     }
 
@@ -39,4 +39,9 @@ section.about-me {
       background: none repeat scroll 0 0 #085100;
     }
   }
+}
+
+.offer-below-post {
+  font-weight: bold;
+  font-size: 1.7em;
 }
