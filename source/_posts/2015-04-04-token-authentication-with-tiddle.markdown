@@ -20,11 +20,13 @@ This post describes how to use [Tiddle](https://github.com/adamniedzielski/tiddl
 
 <!-- more -->
 
+##### Last updated: 30.10.2015
+
 ### Motivation
 
-I needed token authentication strategy for Devise in JSON API application. I started by using [Simple Token Authentication gem](https://github.com/gonzalo-bulnes/simple_token_authentication). It served me well until I realized I need support for multiple tokens per model.
+I needed token authentication strategy for Devise in JSON API application. I started by using [Simple Token Authentication gem](https://github.com/gonzalo-bulnes/simple_token_authentication). It served me well until I realized that I need support for multiple tokens per model.
 
-Imagine a following scenario: your API has **two clients** - web application and mobile application. User A signs in to web application and receives a token. Then he signs in to mobile application and receives the **very same token** (because there is only one token per user). At this point, user A decides to log out from web application, so we generate new token for him and the old token becomes invalid. What is the consequence? User A is also logged out of mobile application.
+Imagine a following scenario: your API has **two clients** - a web application and a mobile application. User A signs in to the web application and receives a token. Then he signs in to the mobile application and receives the **very same token** (because there is only one token per user). At this point, user A decides to log out from the web application, so we generate a new token for him and the old token becomes invalid. What is the consequence? User A is also logged out of the mobile application!
 
 This is **not a user-friendly behaviour**. We don't want the user to be logged out of all applications, we want him to be logged out of just one application. The solution to this problem is to issue a new token after each successful log in attempt and store **multiple tokens** per each user. This is possible with Tiddle.
 
@@ -66,7 +68,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-The last step is to subclass ```Devise::SessionsController``` as [described in Devise documentation](https://github.com/plataformatec/devise#configuring-controllers). In ```create``` action we check provided email and password. If they are valid, we create new authentication token and return it in the response. In ```destroy``` action we expire current token (or do nothing if user is not authenticated).
+The last step is to subclass ```Devise::SessionsController``` as [described in Devise documentation](https://github.com/plataformatec/devise#configuring-controllers). In ```create``` action we check the provided email and password. If they are valid, we create a new authentication token and return it in the response. In ```destroy``` action we expire the current token (or do nothing if the user is not authenticated).
 
 ```ruby
 class Users::SessionsController < Devise::SessionsController
@@ -90,7 +92,7 @@ class Users::SessionsController < Devise::SessionsController
 end
 ```
 
-**And that's it!** If you want to require authenticated user in some controller, just follow standard Devise way:
+**And that's it!** If you want to require authenticated user in some controller, just follow the standard Devise way:
 
 ```ruby
 class PostsController < ApplicationController
@@ -102,48 +104,56 @@ class PostsController < ApplicationController
 end
 ```
 
-Every request to this endpoint has to include ```X-USER-EMAIL``` and ```X-USER-TOKEN``` headers, so authentication strategy can look up user by email and then check validity of token.
+Every request to this endpoint has to include ```X-USER-EMAIL``` and ```X-USER-TOKEN``` headers, so the authentication strategy can look up the user by email and then check validity of the token.
+
+You can take a look at the **example Rails application** which I created: https://github.com/adamniedzielski/tiddle-rails-demo
 
 ### Usage in AngularJS client
 
-This is a short example of token authentication written in AngularJS. In our client we have to:
+This is a short example of token authentication written in AngularJS. It was tested with Angular 1.4.7. In our client we have to:
 
-* provide email and password to **obtain** token
-* **save** email and token in cookies
-* **send** email and token with every request
+* provide the email and password to **obtain** the token
+* **save** the email and token in cookies
+* **send** the email and token with every request
 
 This is a simplified controller action which makes request to our API:
 
 ```javascript
-angular.module("app").
-  controller("LoginController", function ($scope, $http, $cookies) {
+angular.module('app')
+  .controller('MainController', function ($scope, $http, $cookies) {
+    $scope.user = {};
 
     $scope.login = function() {
-      $http.post('http://localhost:3000/users/sign_in.json', { user: { email: $scope.email, password: $scope.password } }).
+      $http.post('http://localhost:3000/users/sign_in.json', { user: { email: $scope.user.email, password: $scope.user.password } }).
         then(function (response) {
-          $cookies.user_email = $scope.email;
-          $cookies.user_token = response.data.authentication_token;
+          $cookies.put("user_email", $scope.user.email);
+          $cookies.put("user_token", response.data.authentication_token);
         });
     };
   });
+
 ```
 
 And this is a **request interceptor** which adds authentication headers to every request:
 
 ```javascript
+angular.module('app', ['ngCookies']);
+
 angular.module("app").
   config(function($httpProvider) {
     $httpProvider.interceptors.push(function($cookies) {
       return {
         'request': function(config) {
-          config.headers['X-USER-EMAIL'] = $cookies.user_email;
-          config.headers['X-USER-TOKEN'] = $cookies.user_token;
+          config.headers['X-USER-EMAIL'] = $cookies.get("user_email");
+          config.headers['X-USER-TOKEN'] = $cookies.get("user_token");
           return config;
         }
       };
     });
   });
 ```
+
+You can get the code of the **complete AngularJS example** here: https://github.com/adamniedzielski/tiddle-angular-demo
 
 ### Deleting old tokens
 
@@ -155,6 +165,20 @@ task purge_old_authentication_tokens: :environment do
     Tiddle.purge_old_tokens(user)
   end
 end
+```
+
+<h3 id="rails-session">
+  Note on Rails session
+</h3>
+
+Tiddle was built with API-only applications in mind. In API-only application you should **avoid using cookies** at all. The pair of email and token is what identifies the user. However, we rely on Devise ```database_authenticatable``` strategy to perform the sign in action and in this case Devise stores ```user_id``` in Rails session.
+
+This results in an extremely confusing situation: you send **wrong token**, but manage to authenticate. That's because Rails session was sent and Devise performed authentication based on it.
+
+The safest solution in API-only application is not to rely on Rails session at all and **disable** it. Put this line in your ```application.rb```:
+
+```ruby
+config.middleware.delete ActionDispatch::Session::CookieStore
 ```
 
 ### Conclusion
