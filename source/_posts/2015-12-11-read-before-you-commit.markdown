@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Read before you commit"
-date: 2015-10-13 13:55:11 +0200
+date: 2015-12-11 07:55:11 +0100
 comments: true
 categories:
 - git
@@ -31,7 +31,7 @@ Here are some questions which you should ask yourself when going through all the
 
 1. **Is it really necessary?**
 
-    What happens if you revert changes in this line? Is it **required** for the rest of code to work? Maybe it was you first solution, but then you had a better idea, introduced some other change and this one is now unnecessary?
+    What happens if you revert the changes in this line? Are they **required** for the rest of the code to work? Maybe it was you first solution, but then you had a better idea, introduced some other change and this one is now unnecessary?
 
 2. **Do you understand why it works?**
 
@@ -39,7 +39,7 @@ Here are some questions which you should ask yourself when going through all the
 
 3. **Is it related to the feature?**
 
-    You may have decided that it's generally a good idea to change log level in "development" environment to "debug". However, it shouldn't be included with other changes related to current feature / bug fix. Why? Because the person reading your code may assume that it's somehow related and necessary for other changes to work. What's more, the changes are now tied in the single commit, so you cannot decide to merge one and leave the other. Just **make a separate commit for every unrelated change**.
+    You may have decided that it's generally a good idea to change the log level in "development" environment to "debug". However, it shouldn't be included with the other changes related to the current feature / bug fix. Why? Because the person reading your code may assume that it's somehow related and necessary for other changes to work. What's more, the changes are now tied in the single commit, so you cannot decide to merge one and leave the other. Just **make a separate commit for every unrelated change**.
 
 4. **Is it inline with the best practices?**
 
@@ -49,6 +49,6 @@ Here are some questions which you should ask yourself when going through all the
 Doesn't it take up too much time? I'm in a hurry, we have deadlines, you know.
 {% endblockquote %}
 
-No. Nope. **It doesn't take up too much time.** This time is a time well spent. You will soon be even more in a hurry if you commit changes before reviewing them. If you make any mistake, the combined effort to find it, communicate it, fix it and commit it, will be always higher than the effort to just read the code.
+No. Nope. **It doesn't take up too much time.** This time is a time well spent. You will soon be even more in a hurry if you commit some changes without reviewing them. If you make any mistake, the combined effort to find it, communicate it, fix it, commit it and deploy it, will be always higher than the effort to just read the code.
 
 **Read the code before you commit it.**
