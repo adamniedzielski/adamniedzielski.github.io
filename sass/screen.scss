@@ -19,29 +19,29 @@ section.about-me {
     margin-top: 10px;
     margin-left: 20px;
   }
-
-  a.action-button {
-
-    &, &:hover {
-      font-size: 1.5em;     
-      color: #F8F8F8;
-      text-shadow: none;
-      text-decoration: none;
-      padding: 7px 25px;
-      @include border-radius(4px, 4px);
-    }
-
-    & {
-      background: none repeat scroll 0 0 lighten(#085100, 5);
-    }
-
-    &:hover {
-      background: none repeat scroll 0 0 #085100;
-    }
-  }
 }
 
 .offer-below-post {
   font-weight: bold;
   font-size: 1.7em;
+}
+
+.action-button {
+
+  &, &:hover {
+    font-size: 1.5em;
+    color: #F8F8F8 !important;
+    text-shadow: none;
+    text-decoration: none;
+    padding: 7px 25px;
+    @include border-radius(4px, 4px);
+  }
+
+  & {
+    background: none repeat scroll 0 0 lighten(#085100, 5);
+  }
+
+  &:hover {
+    background: none repeat scroll 0 0 #085100;
+  }
 }

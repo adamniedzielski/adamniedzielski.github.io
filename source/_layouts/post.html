@@ -8,9 +8,26 @@ single: true
   {% include article.html %}
   <footer>
     <hr/>
-    <p class="offer-below-post">
-      If you enjoyed this post why don't you use my knowledge and experience? <a href="http://www.sundaycoding.com" target="_blank">Hire me</a> for Ruby / JavaScript consulting!
-    </p>
+      <h2>Did you enjoy this post? Sign up to my newsletter to get the next bits!</h2>
+      <!-- Begin MailChimp Signup Form -->
+      <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+      <style type="text/css">
+        #mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif; }
+        /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+      </style>
+      <div id="mc_embed_signup">
+      <form action="//sundaycoding.us12.list-manage.com/subscribe/post?u=f9189a5b5d4265b19a485fb46&amp;id=f16563673d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div id="mc_embed_signup_scroll">
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f9189a5b5d4265b19a485fb46_f16563673d" tabindex="-1" value=""></div>
+          <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="action-button"></div>
+          </div>
+      </form>
+      </div>
+
+      <!--End mc_embed_signup-->
     <p class="meta">
       {% include post/author.html %}
       {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
