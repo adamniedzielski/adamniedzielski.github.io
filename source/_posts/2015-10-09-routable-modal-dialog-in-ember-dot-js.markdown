@@ -133,6 +133,8 @@ export default Ember.Service.extend({
 });
 ```
 
+{% render_partial _includes/codebase_health_check_ad.html %}
+
 Now it's time to replace the nested post view with a modal dialog.
 
 Start by installing ```ember-modal-dialog``` and ```ember-cli-sass``` as described in the [README](https://github.com/yapplabs/ember-modal-dialog/blob/84157c49497adf33024924a8156fe7ce7b5ef6a3/README.md):

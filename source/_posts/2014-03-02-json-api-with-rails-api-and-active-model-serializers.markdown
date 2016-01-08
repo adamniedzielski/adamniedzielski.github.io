@@ -147,6 +147,8 @@ The generated JSON will look similar to this:
 }
 ```
 
+{% render_partial _includes/codebase_health_check_ad.html %}
+
 #### More about associations
 
 Let's imagine following use case: we want to get information about a package given its id. And we want it to contain information about the owner (user). Difficult? Not really!

@@ -90,6 +90,8 @@ end
 
 So you have to create a new directory ```app/services/create_user_account``` and place there those extracted services. Each of them should be encapsulated in ```CreateUserAccount``` namespace. Again, Rails autoloads everything for you.
 
+{% render_partial _includes/codebase_health_check_ad.html %}
+
 ### Dependency injection
 
 How can you obtain instance of this "child service" in your "parent service"? You could write something similar to:

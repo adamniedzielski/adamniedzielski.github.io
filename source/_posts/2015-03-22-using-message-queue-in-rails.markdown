@@ -52,6 +52,8 @@ As Rails devs we are pretty familiar with REST, so we can expose REST API in one
 
 - calling app has **knowledge about receiving app** - you have to know which endpoints should be called and which parameters be passed. This introduces coupling.
 
+{% render_partial _includes/codebase_health_check_ad.html %}
+
 ### Solution 3: Message queue
 
 Message queue is a really **nice abstraction**. Publisher just leaves messages at one end of the "pipe", consumer reads messages from the other end of the "pipe". It is **asynchronous**, because publisher does not wait for his message to be processed. Moreover, it decouples publisher from consumer, because publisher does not care what happens with his message and who will read it.

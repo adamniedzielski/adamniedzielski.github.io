@@ -167,6 +167,7 @@ I was doing my best, but the **value** of the automated test suite which I creat
 
 All these factors combined resulted in a **test suite which didn't provide any confidence**. We still had to do manual testing and we did smoke testing before each weekly release to the customer. That happened because we were **not trusting our tests**.
 
+{% render_partial _includes/codebase_health_check_ad.html %}
 
 ### Lessons learned
 

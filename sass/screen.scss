@@ -29,12 +29,15 @@ section.about-me {
 .action-button {
 
   &, &:hover {
-    font-size: 1.5em;
+    font-size: 20px;
     color: #F8F8F8 !important;
     text-shadow: none;
     text-decoration: none;
-    padding: 7px 25px;
+    padding: 10px 25px;
     @include border-radius(4px, 4px);
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
   }
 
   & {
@@ -44,4 +47,13 @@ section.about-me {
   &:hover {
     background: none repeat scroll 0 0 #085100;
   }
+}
+
+.highlight-box {
+  border: 2px solid #085100;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 30px 0;
+  font-size: 20px;
+  font-weight: bold;
 }

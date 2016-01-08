@@ -95,6 +95,8 @@ This time creating child process should succeed.
 
 Can we use posix-spawn with cocaine? Yes, we can! In fact, there is a section in the Readme devoted to this: https://github.com/thoughtbot/cocaine#posix-spawn
 
+{% render_partial _includes/codebase_health_check_ad.html %}
+
 ## Final solution
 
 Ensure that you are running the latest version of cocaine:
