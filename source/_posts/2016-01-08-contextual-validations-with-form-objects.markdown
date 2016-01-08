@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Contextual validations with form objects"
-date: 2015-10-16 09:08:41 +0200
+date: 2016-01-08 09:08:41 +0100
 comments: true
 categories:
 - Rails
@@ -19,7 +19,7 @@ This post shows how to use **form objects** for validations which need to happen
 
 <!-- more -->
 
-This post is based on the form which I developed for one of my clients - [Oxbridge Notes](https://www.oxbridgenotes.co.uk/). It's an application form for law tutors who are willing to work for Oxbridge Notes. I will simplify the details of the underlining model to cover only the interesting patterns. The model in the example is called ```Tutor``` and the schema for it looks as follows:
+This post is based on the form which I developed for one of my clients - Oxbridge Notes. It's an application form for [law tutors](https://www.oxbridgenotes.co.uk/) who are willing to work for Oxbridge Notes. I will simplify the details of the underlining model to cover only the interesting patterns. The model in the example is called ```Tutor``` and the schema for it looks as follows:
 
 ```ruby
 create_table "tutors", force: :cascade do |t|
@@ -46,7 +46,7 @@ As you can see I'm using a ```NOT NULL``` constraint for boolean fields to avoid
 
 ### Form object
 
-We don't want these rules to be enforced on the model level. They are **valid for this particular use case** (user fills in the application form), but they are not general rules. For example, the administrator may want to temporarily disable the tutor by setting ```skype_available```, ```email_available``` and ```in_person_available``` to ```false```. If the validations were placed in the model, we would have to use some **nasty hacks** (skipping validations) to achieve this.
+We don't want these rules to be enforced on the model level. They are **valid for this particular use case** (user fills in the application form), but they are not general rules. For example, the administrator may want to temporarily disable the tutor by setting ```skype_available```, ```email_available``` and ```in_person_available``` to ```false```. If the validations were placed in the model, we would have to use some **nasty hacks** (skipping validations) to achieve this. And when you start skipping validations you are already doomed. You may end up with 25 users with email set to ```null``` (as we did in Oxbridge Notes).
 
 We don't want to mix **validations for data consistency** (validations on the model level) with our **business logic validations**.
 
@@ -66,7 +66,8 @@ Let's add ```tutor``` field, initialize it and delegate some fields to it:
 class TutorApplicationForm
   # [...]
 
-  delegate :name, :skype_available, :email_available, :in_person_available, :postcode, to: :tutor
+  delegate :name, :skype_available, :email_available, :in_person_available,
+    :postcode, to: :tutor
 
   attr_accessor :tutor
 
@@ -76,9 +77,9 @@ class TutorApplicationForm
 end
 ```
 
-Public interface of our form object consists of two methods - ```assign``` and ```save```. I believe that this separation is a better way than one big ```save``` method which handles attribute assignment, saving and error handling.
+The public interface of our form object consists of two methods - ```assign``` and ```save```. I believe that this separation is a better way than one big ```save``` method which handles attribute assignment, saving and error handling.
 
-Let's start with ```TutorApplicationForm#save```:
+Let's start with ```TutorApplicationForm#save```. We have to run both the model level validations - ```tutor.valid?``` and the form object level validations - ```self.valid?```
 
 ```ruby
 class TutorApplicationForm
@@ -100,7 +101,7 @@ class TutorApplicationForm
 end
 ```
 
-Please notice how we are calling ```tutor.valid?``` before evaluating the condition in the "if" statement. ```if valid? && tutor.valid?``` is not going to work as ```tutor.valid?``` won't be called if ```valid?``` is false (due to short circuit evaluation).
+In order to get the errors from the two sources we have to make sure that both ```self.valid?``` and ```tutor.valid?``` are executed. Unfortunately, ```if valid? && tutor.valid?``` won't execute ```tutor.valid?``` if ```self.valid?``` is false, so we won't get errors for the tutor model. That's why we have to provide workaround as presented above.
 
 We also **copy all errors** from ```tutor``` to combine them with errors from the form object.
 
@@ -148,7 +149,7 @@ class TutorApplicationForm
 end
 ```
 
-Here we join the parameters, remove blank elements and remove "other" option from checkbox group (useless for us).
+Here we join the parameters, remove blank elements and remove the "other" option from the checkbox group (useless for us).
 
 ### Validations
 
