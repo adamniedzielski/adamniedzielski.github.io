@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Emails with "View in Browser" link in Node.js'
-date: 2015-10-16 16:52:10 +0200
+date: 2016-03-03 21:52:10 +0100
 comments: true
 categories:
 - Node.js
@@ -18,7 +18,7 @@ But what if you want to implement this feature on your own? Read on to learn **h
 
 <!-- more -->
 
-We will use [Nodemailer](https://github.com/andris9/Nodemailer) for email **transport** and [node-email-templates](https://github.com/niftylettuce/node-email-templates) for rendering **templates** and **inlining** CSS styles. The code was tested under Node.js 4.2.1.
+We will use [Nodemailer](https://github.com/andris9/Nodemailer) for email **transport** and [node-email-templates](https://github.com/niftylettuce/node-email-templates) for rendering **templates** and **inlining** CSS styles. The code was tested under Node.js 5.7.1.
 
 Let's start with implementing just the email transport. Nodemailer has "callback-based" API while I prefer to use **generator based flow control** offered by [co](https://github.com/tj/co). That's why we need [Q](https://github.com/kriskowal/q) to convert "callback-based" API to "promise-based" API which can be used by co.
 
