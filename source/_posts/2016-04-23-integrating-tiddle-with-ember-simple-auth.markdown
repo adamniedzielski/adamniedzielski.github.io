@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Integrating Tiddle with Ember Simple Auth"
-date: 2015-10-30 14:16:32 +0100
+date: 2016-04-23 14:16:32 +0200
 comments: true
 categories:
 - Ruby
@@ -27,7 +27,7 @@ categories:
 
 If you have never heard of Tiddle you should check out my previous blog post about it - [Token authentication with Tiddle](/blog/2015/04/04/token-authentication-with-tiddle). It describes how to set up Tiddle in Ruby on Rails application.
 
-For the purpose of this example I'm going to assume that Rails application is running on ```localhost:3000```.
+For the purpose of this example I'm going to assume that [Rails application](https://github.com/adamniedzielski/tiddle-rails-demo) is running on ```localhost:3000```.
 
 Firstly you have to follow the steps described in [Ember Simple Auth - Basic Usage](https://github.com/simplabs/ember-simple-auth#basic-usage), namely:
 
@@ -84,7 +84,7 @@ export default AjaxService.extend({
 });
 ```
 
-I'm extending the service provided by [ember-ajax](https://github.com/ember-cli/ember-ajax) - a nice wrapper over ```jQuery.ajax```. It's calling the authorizer to get the correct authentication headers (```X-USER-EMAIL``` and ```X-USER-TOKEN```). We are also catching all ```401 Unauthorized``` responses to invalidate the session. This accounts for the situation when session expired on the backend, but our frontend still thinks it's authenticated.
+I'm extending the service provided by [ember-ajax](https://github.com/ember-cli/ember-ajax) - a nice wrapper over ```jQuery.ajax```. It's calling the authorizer to get the correct authentication headers (```X-USER-EMAIL``` and ```X-USER-TOKEN```). We are also catching all ```401 Unauthorized``` responses to invalidate the session. This accounts for the situation when a session expired on the backend, but our frontend still thinks it's authenticated.
 
 Now we have to implement our custom authenticator:
 
@@ -121,7 +121,7 @@ The interface consists of three methods:
 
 1. ```restore``` - This is used to restore the session based on what is saved in the session store (Local Storage with fallback to cookies). We just have to check that ```email``` and ```token``` are present.
 
-2. ```authenticate``` - Here we are using our ```ajax``` service to make a request to the API, passing email and password. Then we return the object which contains email and the authentication token. Ember Simple Auth persists it in the session storage.
+2. ```authenticate``` - Here we are using our ```ajax``` service to make a request to the API, passing an email and a password. Then we return the object which contains the email and the authentication token. Ember Simple Auth persists it in the session storage.
 
 3. ```invalidate``` - We are making the request to the API to remove the current token from the database. Ember Simple Auth takes care about clearing the session storage.
 
@@ -147,4 +147,4 @@ export default Base.extend({
 
 ### Summary
 
-Thanks to Ember Simple Auth we have a clean implementation of authentication logic and many features working out of the box. You can [check out the complete example here](https://github.com/adamniedzielski/tiddle-ember-demo)
+Thanks to Ember Simple Auth we have a clean implementation of authentication logic and many features working out of the box. You can [check out the complete example here](https://github.com/adamniedzielski/tiddle-ember-demo).
