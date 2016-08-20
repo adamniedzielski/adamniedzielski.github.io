@@ -22,6 +22,8 @@ Some people need WebSockets in their app while other people do not need it at al
 
 <!-- more -->
 
+**Updated: 20.08.2016**
+
 ### Scenarios:
 
 1. [I am upgrading from Rails 4](#upgrading-from-rails4)
@@ -101,6 +103,8 @@ require "rails/test_unit/railtie"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 ```
+
+9) If you added `action_cable_meta_tag` to `app/views/layouts/application.html.erb`, remove it from there.
 
 <h2 id="skip-action-cable">
   I want to generate Rails 5 app without Action Cable
