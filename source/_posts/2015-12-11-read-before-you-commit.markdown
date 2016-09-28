@@ -27,8 +27,6 @@ This won't be a lost time. Developers often say that they "**forgot** to remove 
 
 You can use your favourite tool to look at the staged changes. Mine is [Git Gui](https://git-scm.com/docs/git-gui), but it's not really about the tool. It's about the **habit** of reviewing the changes before you commit them.
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 Here are some questions which you should ask yourself when going through all these lines of code:
 
 1. **Is it really necessary?**

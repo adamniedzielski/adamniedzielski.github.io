@@ -151,8 +151,6 @@ end
 
 Here we join the parameters, remove blank elements and remove the "other" option from the checkbox group (useless for us).
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 ### Validations
 
 Now when we have the implementation of the form object in place, adding the validations is pretty simple. Let's start by validating the postcode when "in person" is checked:

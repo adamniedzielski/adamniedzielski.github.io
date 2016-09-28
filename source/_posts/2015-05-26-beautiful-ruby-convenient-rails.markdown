@@ -186,8 +186,6 @@ end
 
 Switch statement in Ruby is powerful. We can match by value, by range membership, by regular expression, by class, ... And there are no awful ```break```s here.
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 ## Ruby on Rails
 
 Ruby as a programming language is beautiful, but Ruby on Rails as a web framework emphasizes convenience. The code below may seem a little bit "hacky", but it's convenient.

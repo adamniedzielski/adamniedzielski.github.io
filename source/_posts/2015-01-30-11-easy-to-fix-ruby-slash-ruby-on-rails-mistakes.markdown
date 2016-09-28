@@ -114,8 +114,6 @@ end
 
 If you need three possible states - use string field with three **well-defined** values.
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 ### 6. Orphaned records after destroy
 
 When you destroy a model and it is required by associated records, you should handle it. It's easy to find such cases:

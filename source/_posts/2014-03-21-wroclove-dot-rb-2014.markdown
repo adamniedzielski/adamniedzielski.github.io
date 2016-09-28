@@ -97,8 +97,6 @@ slides: http://www.slideshare.net/emadb/wroclove-rb
 
 Emanuele Delbono showed us the complete solution for the architecture which he contrasted with the regular **Rails Lasagna architecture**. Then he presented the pros and the cons of such an architecture. I would have to think carefully before applying this in a project - I have the impression that some changes are painful in this architecture, especially event changes (and for sure event changes will happen).
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 ## Day 2
 
 ### Ruby Arrays on Steroids

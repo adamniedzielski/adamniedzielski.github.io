@@ -108,8 +108,6 @@ Every request to this endpoint has to include ```X-USER-EMAIL``` and ```X-USER-T
 
 You can take a look at the **example Rails application** which I created: https://github.com/adamniedzielski/tiddle-rails-demo
 
-{% render_partial _includes/codebase_health_check_ad.html %}
-
 ### Usage in AngularJS client
 
 This is a short example of token authentication written in AngularJS. It was tested with Angular 1.4.7. In our client we have to:
