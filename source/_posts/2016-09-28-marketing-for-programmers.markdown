@@ -16,7 +16,7 @@ I'm bad at marketing products that I created. Just today I had to shut down Code
 
 <!-- more -->
 
-I'm excited to share that my friend Jack Kinsella have published his [book about marketing for programmers](https://www.jackkinsella.ie/books/entreprenerd/marketing_for_programmers). Jack certainly knows what he is talking about - he runs a profitable online business and he did all the marketing. This book is aimed at programmers and Jack is also a self-taught software developer.
+I'm excited to share that my friend Jack Kinsella has published his [book about marketing for programmers](https://www.jackkinsella.ie/books/entreprenerd/marketing_for_programmers). Jack certainly knows what he is talking about - he runs a profitable online business and he did all the marketing. This book is aimed at programmers and Jack is also a self-taught software developer.
 
 What I really hate about other marketing books is that they are theoretical and you don't get any rules which you can immediately apply in practice. "**Entreprenerd: The Busy Person's Primer on SEO, Paid Advertising, and Conversion Optimisation**" is different. It literally consists of real life stories and actionable pointers.
 
