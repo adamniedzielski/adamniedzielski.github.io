@@ -5,6 +5,23 @@ sharing: false
 footer: true
 ---
 
-Hey! I'm Adam and I'm a programmer that loves teaching people how to write code and sharing my knowledge. I enjoy conferences and local programming meetups as an attendee, speaker and organizer. I'm obsessed with clean code, but I never forget that the technology exists to serve its users. In my free time I play board games, drink craft beer or explore new cities without checking a map.
+Hey! I'm Adam and I'm a Ruby / JavaScript programmer. During my career I worked
+in a software house and run a consultancy. Then I transitioned to product work
+and joined GitLab to be a full-time open source contributor. I like product
+companies.
 
-I love open source that's why I decided to join <a href="https://about.gitlab.com" target="_blank">GitLab</a>. Also, check out my gem <a href="https://github.com/adamniedzielski/tiddle" target="_blank">Tiddle</a> - Devise strategy for token authentication in API-only Ruby on Rails applications.
+I worked remotely for two years, collaborating with people distributed across
+(almost) all timezones. Now I'm back in an office. I live in Berlin, Germany.
+
+I'm happily employed at [Liefery](https://www.liefery.com) as Senior Backend
+Developer.
+
+I sometimes speak at conferences and local meetups. The most important past
+events:
+
+1. Brighton Ruby Conf 2017 - "Boring Ruby Code" -
+[slides](https://speakerdeck.com/adamniedzielski/boring-ruby-code-2)
+1. Conferencia Rails Madrid 2016 - "Responsible gem collector" -
+[slides](http://blog.sundaycoding.com/presentations/responsible-gem-collector)
+1. RubyC Kiev 2016 - "Responsible gem collector" -
+[video](https://www.youtube.com/watch?v=vGu7ZBI0KzE)

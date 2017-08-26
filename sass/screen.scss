@@ -18,16 +18,11 @@ section.about-me {
   img {
     margin-top: 10px;
     margin-left: 20px;
+    margin-bottom: 20px;
   }
 }
 
-.offer-below-post {
-  font-weight: bold;
-  font-size: 1.7em;
-}
-
 .action-button {
-
   &, &:hover {
     font-size: 20px;
     color: #F8F8F8 !important;
@@ -47,13 +42,4 @@ section.about-me {
   &:hover {
     background: none repeat scroll 0 0 #085100;
   }
-}
-
-.highlight-box {
-  border: 2px solid #085100;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 30px 0;
-  font-size: 20px;
-  font-weight: bold;
 }
