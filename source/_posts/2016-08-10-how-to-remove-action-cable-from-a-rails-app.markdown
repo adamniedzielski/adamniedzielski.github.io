@@ -22,7 +22,7 @@ Some people need WebSockets in their app while other people do not need it at al
 
 <!-- more -->
 
-**Updated: 20.08.2016**
+**Updated: 21.12.2017**
 
 ### Scenarios:
 
@@ -58,6 +58,30 @@ require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 ```
+
+4) (optional) Open `Gemfile` and replace:
+
+```ruby
+gem "rails"
+```
+
+with:
+
+```ruby
+gem "activerecord"
+gem "activemodel"
+gem "actionpack"
+gem "actionview"
+gem "actionmailer"
+gem "activejob"
+gem "activesupport"
+gem "railties"
+gem "sprockets-rails"
+```
+
+In general, list only the gems that you are really using as your dependencies.
+Please note that trimming down your `Gemfile` will only have an effect if none of your other dependencies depend on `rails` gem. You can verify that by searching
+for `rails` in `Gemfile.lock`.
 
 <h2 id="generated-rails5-with-action-cable">
   I generated Rails 5 app with Action Cable
@@ -106,12 +130,59 @@ require "rails/test_unit/railtie"
 
 9) If you added `action_cable_meta_tag` to `app/views/layouts/application.html.erb`, remove it from there.
 
+10) (optional) Open `Gemfile` and replace:
+
+```ruby
+gem "rails"
+```
+
+with:
+
+```ruby
+gem "activerecord"
+gem "activemodel"
+gem "actionpack"
+gem "actionview"
+gem "actionmailer"
+gem "activejob"
+gem "activesupport"
+gem "railties"
+gem "sprockets-rails"
+```
+
+In general, list only the gems that you are really using as your dependencies.
+Please note that trimming down your `Gemfile` will only have an effect if none of your other dependencies depend on `rails` gem. You can verify that by searching
+for `rails` in `Gemfile.lock`.
+
 <h2 id="skip-action-cable">
   I want to generate Rails 5 app without Action Cable
 </h2>
 
-`rails new my-app-name --skip-action-cable`
+1) `rails new my-app-name --skip-action-cable`
 
+2) (optional) Open `Gemfile` and replace:
+
+```ruby
+gem "rails"
+```
+
+with:
+
+```ruby
+gem "activerecord"
+gem "activemodel"
+gem "actionpack"
+gem "actionview"
+gem "actionmailer"
+gem "activejob"
+gem "activesupport"
+gem "railties"
+gem "sprockets-rails"
+```
+
+In general, list only the gems that you are really using as your dependencies.
+Please note that trimming down your `Gemfile` will only have an effect if none of your other dependencies depend on `rails` gem. You can verify that by searching
+for `rails` in `Gemfile.lock`.
 
 -------------
 
