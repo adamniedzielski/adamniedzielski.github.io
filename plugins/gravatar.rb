@@ -23,7 +23,7 @@ module Jekyll
 			gravatar_hash = Digest::MD5.hexdigest(email_address)
 
 			# compile the full Gravatar URL
-			image_src = "http://www.gravatar.com/avatar/#{gravatar_hash}"
+			image_src = "https://www.gravatar.com/avatar/#{gravatar_hash}"
 			
                         # append size query to URL if provided in tag
                         unless @size.empty?
