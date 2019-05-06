@@ -12,7 +12,7 @@ categories:
 - advertising
 ---
 
-I'm bad at marketing products that I created. Just today I had to shut down Codebase Health Check, because I couldn't get enough customers in the last six months. Fortunately, you have a chance to be much **better at marketing** than me.
+I'm bad at marketing products that I created. Just today I had to shut down Codebase Health Check, because I couldn't get enough customers in the last six months. Apparently it's not so easy to [build a profitable business as a side project](https://abot.app/blog/profitable-slack-bot-rails). Fortunately, you have a chance to be much **better at marketing** than me.
 
 <!-- more -->
 
