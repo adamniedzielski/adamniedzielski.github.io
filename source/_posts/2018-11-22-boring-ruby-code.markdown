@@ -19,7 +19,7 @@ Today is the day so here we go.
 <!-- more -->
 
 This is just a short summary, not one-to-one transcription of the talk.
-You can watch the [video from Brighton Ruby Conf here](https://brightonruby.com/2017/boring-ruby-code-adam-niedzielski/).
+You can watch the [video from Southeast Ruby](https://youtu.be/t9x3-6ZQ7xY?t=339).
 
 1. Boring code is easier to understand. In your team you have (or at least should
    have) people at different stages of their career. Certain constructs in Ruby
