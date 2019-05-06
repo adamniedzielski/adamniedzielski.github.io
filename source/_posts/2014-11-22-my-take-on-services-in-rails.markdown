@@ -219,3 +219,9 @@ end
 #### Update 27.12.2014
 
 Following suggestions in the comments, I've prepared a dummy app to demonstrate usage of service objects. I hope it's at least a bit more concrete than the examples above. Here is the link: https://github.com/adamniedzielski/service-objects-example
+
+#### Update 06.05.2019
+
+Four and half years after writing this blog post and the Rails community still
+does not have a standard way of writing service objects :) You can read what my
+fellow programmer Paweł thinks about [service objects in Rails](https://pawelurbanek.com/2018/02/12/ruby-on-rails-service-objects-and-testing-in-isolation/).
