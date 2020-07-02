@@ -108,7 +108,7 @@ end
 
 In such a case you **hardcode** instantiation of ```GenerateToken``` service inside ```CreateUserAccount```. Your are not able to easily provide mock implementation of ```GenerateToken``` inside your tests so you cannot test ```CreateUserAccount``` service in isolation.
 
-The simple yet powerful solution [is described here](http://solnic.eu/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html). Let's apply it in our case:
+The simple yet powerful solution [is described here](http://solnic.codes/2013/12/17/the-world-needs-another-post-about-dependency-injection-in-ruby.html). Let's apply it in our case:
 
 ```ruby app/services/create_user_account.rb
 class CreateUserAccount
